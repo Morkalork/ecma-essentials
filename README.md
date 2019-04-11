@@ -1,11 +1,15 @@
 # ECMA ESSENTIALS
 
+_To Micke and Anders, vincit qui se vincit_
+
 This is a walkthrough of features found in modern JavaScript. It won't cover everything, just basic features that will be found in virtually any modern JS project. Some of these features have existed for a long time, others
 were added in ES6, ES7 or any other new release of the ECMA Script specification.
 
 ## Constants and letdowns
 
-No more use of `var`, use `const` and `let` instead. `const` can only be assigned to once, otherwise it will throw an error:
+Don't use `var`, use `const` and `let` instead. 
+
+`const` is, as the name implies, a constant and can only be assigned to once, otherwise it will throw an error:
 ```js
 const name = 'Magnus';
 name = 'Mangolf'; // Uncaught TypeError: Assignment to constant variable.
@@ -18,6 +22,7 @@ name = 'Mangolf'; // Acceptable!
 ```
 
 The difference between `let` and `var` in such a case is that `var` is declared globally and `let` is block scoped
+
 ```js
 // var
 console.log(name); // Undefined, but no crash
@@ -32,7 +37,7 @@ console.log(name);
 
 ## Fat arrows
 
-Instead of boring old standard functions we can now use arrow functions:
+Instead of boring old standard functions we can use arrow functions:
 
 ```js
 // Life with arrow functions
@@ -72,7 +77,7 @@ person.foo();
 
 ## Default parameters
 
-Parameters in functions can now have default values, very nifty:
+Parameters in functions can have default values, very nifty:
 
 ```js
 function foo(bar = 15) {
@@ -83,7 +88,7 @@ foo(12); // 12
 foo(); // 15
 ```
 
-You also have a "rest" parameters that you can use that sums up all the remaining parameters:
+You also have a "rest" parameters that you can use that sums up all the remaining parameters into an array:
 
 ```js
 function foo(a, b, ...c) {
@@ -97,7 +102,7 @@ foo(1, 2, 3, 4);
 
 ## Spread operator
 
-You can now spread the elements of an array:
+You can spread the elements of an array:
 
 ```js
 const turtles = ['Mike', 'Leo', 'Raf', 'Donny'];
@@ -107,7 +112,7 @@ console.log(heroes); // ['Superman', 'Batman', 'Mike', 'Leo', 'Raf', 'Donny']
 
 ## Improved object management
 
-You can now create an object with variables directly as properties:
+You can create an object with variables directly as properties:
 
 ```js
 const name = 'Magnus';
@@ -169,7 +174,7 @@ func2(p);
 
 ## Template literals
 
-You can now concatenate text with ease using template literals:
+You can concatenate text with ease using template literals:
 
 ```js
 const name = 'Magnus';
@@ -196,7 +201,7 @@ console.log(ಠ_ಠ); // 'Why...'
 
 ## Import/Export
 
-You can now export values from a file and import them in another. This is benefitial for many reasons, the main one being code structure.
+You can export values from a file and import them in another. This is benefitial for many reasons, the main one being code structure.
 
 ```js
 // NAMED EXPORT 
@@ -259,7 +264,7 @@ export default myFunc;
 
 ## Classes
 
-You can now use proper class syntax in ES6, if that's your cup of tea:
+You can use proper class syntax in ES6, if that's your cup of tea:
 
 ```js
 class Person {
@@ -318,7 +323,7 @@ e.work(); // 'Boss, my back hurts. I think this is it...'
 
 ## Object assigning
 
-You can now source over properties from one object to another using the Object.assign method:
+You can source over properties from one object to another using the Object.assign method:
 
 ```js
 // Old
@@ -328,7 +333,6 @@ p2.name = 'Mangolf';
 console.log(p1.name); // 'Mangolf', argh, freaking copy by reference!
 
 // New
-
 const p1 = {name: 'Magnus'};
 const p2 = Object.assign({}, p1); // Create an empty object and copy over the properties of p1 to it
 p2.name = 'Mangolf';
@@ -354,16 +358,16 @@ Promises are handy when you need to work asynchronously. A promise will accept a
 const myFunc = () => {
 	return new Promise((resolve) => {
   	setTimeout(() => {
-    	console.log('I am done now');
-      resolve();
+        console.log('I am done now');
+        resolve();
     }, 500);
   });
 }
 
 myFunc()
 	.then(() => {
-  	console.log('Promise is now resolved');
-  });
+        console.log('Promise is now resolved');
+    });
   
 console.log('End of code');
 
@@ -411,10 +415,10 @@ const p1 = {name: 'Magnus', age: 34};
 const p2 = {name: 'Electra', age: 490};
 const p3 = {name: 'Dunderklumpen', age: 7}; 
 
-const people = [p1, p2, p3];
+const people = [p1, p2, p3]; // A good list of people
 
 
-// Use map to "map" an object into something different, such as getting all names from a list of people:
+// Use map to mutate an object into something different, such as getting all names from a list of people:
 const names = people.map((person) => person.name);
 console.log(names); // ['Magnus', 'Electra', 'Dunderklumpen'];
 
