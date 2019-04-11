@@ -42,33 +42,33 @@ Instead of boring old standard functions we can use arrow functions:
 ```js
 // Life with arrow functions
 const myFunction = (callback) => {
-	callback(); // Foo
-}
+  callback(); // Foo
+};
 
 myFunction(() => console.log('Foo'));
 
 // Life without arrow functions
 function myOldFunction(callback) {
-	callback(); // Foo
+  callback(); // Foo
 }
 
 myOldFunction(function() {
-	console.log('Foo')
-})
+  console.log('Foo')
+});
 ```
 
 Apart from a briefer syntax arrow functions has the added benefit of not creating a separate scope for `this`:
 
 ```js
 const person = {
-	age: 34,
+  age: 34,
   foo: function foo() {
-  	setTimeout(function() {
-    	console.log(this.age); // Undefined, this is bound to the global scope
-    },0);
+    setTimeout(function() {
+      console.log(this.age); // Undefined, this is bound to the global scope
+    }, 0);
     setTimeout(() => {
-    	console.log(this.age); // 34, this is bound to the local scope
-    },0)
+      console.log(this.age); // 34, this is bound to the local scope
+    }, 0)
   },
 }
 
@@ -81,7 +81,7 @@ Parameters in functions can have default values, very nifty:
 
 ```js
 function foo(bar = 15) {
-	console.log(bar);
+  console.log(bar);
 }
 
 foo(12); // 12
@@ -92,9 +92,9 @@ You also have a "rest" parameters that you can use that sums up all the remainin
 
 ```js
 function foo(a, b, ...c) {
-    console.log(a); // 1
-    console.log(b); // 2
-    console.log(c); // [3, 4]
+  console.log(a); // 1
+  console.log(b); // 2
+  console.log(c); // [3, 4]
 }
 
 foo(1, 2, 3, 4);
@@ -128,11 +128,14 @@ You can also destruct an object back into variables instead of assigning them on
 
 ```js
 const person = {
-    name: 'Magnus',
-    isDumb: true
+  name: 'Magnus',
+  isDumb: true
 };
 
-const { name, isDumb } = person;
+const {
+  name,
+  isDumb
+} = person;
 
 console.log(name); // 'Magnus'
 console.log(isDumb); // true
@@ -156,17 +159,23 @@ You can also destroy incoming properties in a function:
 ```js
 // Without destructuring
 const func1 = (person) => {
-    console.log(person.name);
-    console.log(person.age);
+  console.log(person.name);
+  console.log(person.age);
 }
 
 // With destructuring
-const func2 = ({name, age}) => {
-    console.log(name);
-    console.log(age);
+const func2 = ({
+  name,
+  age
+}) => {
+  console.log(name);
+  console.log(age);
 }
 
-const p = {name: 'Magnus', age: 34};
+const p = {
+  name: 'Magnus',
+  age: 34
+};
 
 func1(p);
 func2(p);
@@ -209,12 +218,14 @@ You can export values from a file and import them in another. This is benefitial
 // myFunc.js
 // Export a function called 'myFunc'
 export const myFunc = () => {
-	console.log('Doing something funky...');
+  console.log('Doing something funky...');
 }
 
 // someOtherFile.js
 // Import from ./myFunc a value named 'myFunc'
-import { myFunc } from './myFunc';
+import {
+  myFunc
+} from './myFunc';
 
 myFunc(); // 'Doing something funky...';
 ```
@@ -225,7 +236,7 @@ myFunc(); // 'Doing something funky...';
 // myFunc.js
 // Export a default function
 export default () => {
-	console.log('Doing something funky...');
+  console.log('Doing something funky...');
 }
 
 // someOtherFile
@@ -248,13 +259,13 @@ export const myFunction = () => console.log('goodbai werd');
 
 // Export a named function (old school)
 export function myFunction() {
-    console.log('Ugh, old world problems...');
+  console.log('Ugh, old world problems...');
 }
 
 // Export a named object
 export const person = {
-    name: 'Magnus',
-    age: 34
+  name: 'Magnus',
+  age: 34
 };
 
 // Default export a declared function
@@ -268,13 +279,13 @@ You can use proper class syntax in ES6, if that's your cup of tea:
 
 ```js
 class Person {
-	constructor(name, age) {
-  	this.name = name;
+  constructor(name, age) {
+    this.name = name;
     this.age = age;
   }
-  
+
   makeOlder() {
-  	this.age++;
+    this.age++;
   }
 }
 
@@ -289,28 +300,28 @@ You can also have class inheritence:
 
 ```js
 class Person {
-	constructor(name, age) {
-  	this.name = name;
+  constructor(name, age) {
+    this.name = name;
     this.age = age;
   }
-  
+
   makeOlder() {
-  	this.age++;
+    this.age++;
   }
 }
 
-class Employee extends Person{
-	constructor(name, age, position) {
-  	super(name, age);
-    
+class Employee extends Person {
+  constructor(name, age, position) {
+    super(name, age);
+
     this.position = position;
   }
-  
+
   work() {
-  	if(this.age >= 35) {
-    	console.log('Boss, my back hurts. I think this is it...');
+    if (this.age >= 35) {
+      console.log('Boss, my back hurts. I think this is it...');
     } else {
-    	console.log('I am not listening...');
+      console.log('I am not listening...');
     }
   }
 }
@@ -356,19 +367,19 @@ Promises are handy when you need to work asynchronously. A promise will accept a
 
 ```js
 const myFunc = () => {
-	return new Promise((resolve) => {
-  	setTimeout(() => {
-        console.log('I am done now');
-        resolve();
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      console.log('I am done now');
+      resolve();
     }, 500);
   });
 }
 
 myFunc()
-	.then(() => {
-        console.log('Promise is now resolved');
-    });
-  
+  .then(() => {
+    console.log('Promise is now resolved');
+  });
+
 console.log('End of code');
 
 // End of code
@@ -380,18 +391,18 @@ You can also use the `Promise.all` method to wait until multiple promises comple
 
 ```js
 const myFunc = () => {
-	return new Promise((resolve) => {
-  	setTimeout(() => {
-    	console.log('I am done now');
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      console.log('I am done now');
       resolve();
     }, 500);
   });
 }
 
 const myOtherFunc = () => {
-	return new Promise((resolve, reject) => {
-  	setTimeout(() => {
-    	if(new Date().getHours() > 12) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      if (new Date().getHours() > 12) {
         resolve();
       } else {
         reject();
@@ -401,7 +412,7 @@ const myOtherFunc = () => {
 }
 
 Promise.all([
-	myFunc(),
+  myFunc(),
   myOtherFunc()
 ]).then(() => console.log('All done'));
 ```
@@ -411,9 +422,18 @@ Promise.all([
 There are many nifty features available when working with collections, here are some of the handiest and how to use them:
 
 ```js
-const p1 = {name: 'Magnus', age: 34};
-const p2 = {name: 'Electra', age: 490};
-const p3 = {name: 'Dunderklumpen', age: 7}; 
+const p1 = {
+  name: 'Magnus',
+  age: 34
+};
+const p2 = {
+  name: 'Electra',
+  age: 490
+};
+const p3 = {
+  name: 'Dunderklumpen',
+  age: 7
+};
 
 const people = [p1, p2, p3]; // A good list of people
 
@@ -455,8 +475,8 @@ console.log(combinedAge); // 531
 
 // Use reduce to find the highest age of a person in the array:
 const highestAge = people.reduce((oldestAge, person) => {
-	if(person.age > oldestAge) {
-  	oldestAge = person.age;
+  if (person.age > oldestAge) {
+    oldestAge = person.age;
   }
   return oldestAge;
 }, 0);
@@ -465,6 +485,6 @@ console.log(highestAge);
 
 // Combine multiple array features:
 const namesOfOldies = people.filter((person) => person.age > 18)
-	.map((person) => person.name);
+  .map((person) => person.name);
 console.log(namesOfOldies); // ['Magnus', 'Electra']
 ```
